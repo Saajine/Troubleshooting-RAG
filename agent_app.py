@@ -2,7 +2,7 @@ from langchain_community.llms import Ollama
 from langchain.agents import initialize_agent, AgentType, Tool
 from query_kg import query_knowledge_graph
 
-# wrapping the query function as langChain tool
+#query function wrapped as a LangChain tool
 query_tool = Tool(
     name="QueryKnowledgeGraph",
     func=lambda query: query_knowledge_graph(query),
@@ -12,21 +12,24 @@ query_tool = Tool(
     )
 )
 
-# initializimg ilama via ollama
-llm = Ollama(
-    model="llama3", 
+# Initialize Llama via Ollama
+llm = Ollama(  
+    model="llama3",
     temperature=0
 )
 
-# creating langChain agent
+#create LangChain agent with our custom tool
 agent = initialize_agent(
     tools=[query_tool],
     llm=llm,
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True 
+    verbose=True,
+    handle_parsing_errors=True
 )
 
 if __name__ == "__main__":
-    user_query = "How to fix a login failure?"
-    response = agent.run(user_query)
-    print("Agent Response:\n", response)
+    user_query = input("Enter your troubleshooting question: ")
+    
+    response = agent.invoke({"input": user_query})
+    
+    print("\nAgent Response:\n", response["output"])

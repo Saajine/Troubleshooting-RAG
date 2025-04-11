@@ -1,7 +1,7 @@
 import json
 
 def load_knowledge_graph(filepath):
-    #Load JSON file, return content as Python dictionary
+    #load JSON file, return content as python dict
     try:
         with open(filepath, 'r') as file:
             data = json.load(file)
@@ -14,12 +14,10 @@ def load_knowledge_graph(filepath):
         return None
 
 if __name__ == "__main__":
-    # Set file path to JSON file
+    #set file path to JSON file
     filepath = 'knowledge_graph.json'
     knowledge_graph = load_knowledge_graph(filepath)
-    
-    if knowledge_graph: 
+    if knowledge_graph:
         product_name = knowledge_graph.get("SoftwareProduct", {}).get("name")
         print("Product Name:", product_name)
-
-        #print(json.dumps(knowledge_graph, indent=4))
+        # print(json.dumps(knowledge_graph, indent=4))
