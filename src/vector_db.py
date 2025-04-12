@@ -48,13 +48,22 @@ class KnowledgeGraphVectorDB:
         # Prepare data for bulk insertion
         ids = [doc['id'] for doc in documents]
         texts = [doc['text'] for doc in documents]
-        metadatas = [doc['metadata'] for doc in documents]
+        
+        # Clean metadata by removing None values
+        cleaned_metadatas = []
+        for doc in documents:
+            # Filter out None values from metadata
+            cleaned_metadata = {}
+            for key, value in doc['metadata'].items():
+                if value is not None:  # Only include non-None values
+                    cleaned_metadata[key] = value
+            cleaned_metadatas.append(cleaned_metadata)
         
         # Add documents to collection
         self.collection.add(
             ids=ids,
             documents=texts,
-            metadatas=metadatas
+            metadatas=cleaned_metadatas
         )
         print(f"Added {len(documents)} documents to the collection")
     
@@ -86,24 +95,7 @@ def main():
     
     # Print collection count
     print(f"Total documents in collection: {vector_db.get_collection_count()}")
-    
-    # Test query
-    query = "login problems"
-    results = vector_db.query(query)
-    
-    print(f"\nQuery: '{query}'")
-    print("Results:")
-    for i, (doc, metadata, distance) in enumerate(zip(
-        results['documents'][0], 
-        results['metadatas'][0], 
-        results['distances'][0]
-    )):
-        print(f"\nResult {i+1} (Relevance: {1-distance:.4f}):")
-        print(f"Title: {metadata['title']}")
-        print(f"Severity: {metadata['severity']}")
-        print("Content Preview:")
-        preview = doc.split('\n')[0:3]
-        print('\n'.join(preview))
+
 
 if __name__ == "__main__":
     main()

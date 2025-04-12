@@ -6,14 +6,14 @@ import re
 from pathlib import Path
 import logging
 from vector_db import KnowledgeGraphVectorDB
-from llm_interface import LLMInterface
+from ollama_interface import OllamaInterface
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class QueryProcessor:
-    def __init__(self, vector_db=None, llm_interface=None):
+    def __init__(self, vector_db=None, ollama_interface=None, model_name="llama3"):
         """Initialize query processor."""
         # Initialize vector database
         if vector_db is None:
@@ -21,15 +21,15 @@ class QueryProcessor:
         else:
             self.vector_db = vector_db
         
-        # Initialize LLM interface
-        if llm_interface is None:
-            self.llm_interface = LLMInterface()
+        # Initialize Ollama interface
+        if ollama_interface is None:
+            self.ollama_interface = OllamaInterface(model_name=model_name)
         else:
-            self.llm_interface = llm_interface
+            self.ollama_interface = ollama_interface
         
         # Create chains
-        self.query_chain = self.llm_interface.create_query_chain()
-        self.answer_chain = self.llm_interface.create_answer_chain()
+        self.query_chain = self.ollama_interface.create_query_chain()
+        self.answer_chain = self.ollama_interface.create_answer_chain()
     
     def _parse_query_analysis(self, analysis):
         """Parse the LLM's query analysis."""
@@ -103,25 +103,14 @@ class QueryProcessor:
         )):
             relevance = 1 - distance
             context += f"--- Result {i+1} (Relevance: {relevance:.2f}) ---\n"
-            context += f"Title: {metadata['title']}\n"
-            context += f"Severity: {metadata['severity']}\n\n"
+            
+            # Safely access metadata fields
+            title = metadata.get('title', 'No title available')
+            severity = metadata.get('severity', 'Not specified')
+            
+            context += f"Title: {title}\n"
+            context += f"Severity: {severity}\n\n"
             context += doc
             context += "\n\n"
-        
+    
         return context
-
-def main():
-    """Test the query processor."""
-    # Initialize query processor
-    processor = QueryProcessor()
-    
-    # Test with a sample question
-    test_question = "How do I fix a login failure?"
-    result = processor.process_query(test_question)
-    
-    print("\nQuery Processing Result:")
-    print(f"Question: {result['query']}")
-    print(f"Answer: {result['answer']}")
-
-if __name__ == "__main__":
-    main()
