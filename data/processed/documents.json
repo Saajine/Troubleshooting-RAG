@@ -1,0 +1,22 @@
+[
+  {
+    "id": "issue001",
+    "text": "Issue: Login Failure\nDescription: User unable to log in due to credential verification error.\nSeverity: High\n\nSymptoms:\n- Invalid credentials'\n- Timeout on the login screen\n\nCauses:\n- Server authentication error\n- Network connectivity issue\n\nSolutions:\n- Restart the authentication server and verify network connectivity (Est. time: 15 minutes)\n  Steps:\n  1. Restart authentication server.\n  2. Check network connection and stable communication.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue001",
+      "title": "Login Failure",
+      "severity": "High"
+    }
+  },
+  {
+    "id": "issue002",
+    "text": "Issue: Crash on Startup\nDescription: Application crashes immediately upon launching.\nSeverity: Critical\n\nSymptoms:\n- Application closes unexpectedly without error message.\n\nCauses:\n- Config file error\n\nSolutions:\n- Reinstall app and restore backup configuration  (Est. time: 30 mins)\n  Steps:\n  1. Uninstall current app version \n  2. Reinstall application using the latest installer.\n  3. Restore configuration setting from backup.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue002",
+      "title": "Crash on Startup",
+      "severity": "Critical"
+    }
+  }
+]

@@ -1,0 +1,97 @@
+{
+    "SoftwareProduct": {
+      "product_id": "prod001",
+      "name": "Dassaults App",
+      "version": "1.0",
+      "issues": [
+        {
+          "issue_id": "issue001",
+          "title": "Login Failure",
+          "description": "User unable to log in due to credential verification error.",
+          "severity": "High",
+          "symptoms": [
+            {
+              "symptom_id": "sym001",
+              "description": "Invalid credentials'"
+            },
+            {
+              "symptom_id": "sym002",
+              "description": "Timeout on the login screen"
+            }
+          ],
+          "causes": [
+            {
+              "cause_id": "cause001",
+              "description": "Server authentication error"
+            },
+            {
+              "cause_id": "cause002",
+              "description": "Network connectivity issue"
+            }
+          ],
+          "solutions": [
+            {
+              "solution_id": "sol001",
+              "description": "Restart the authentication server and verify network connectivity",
+              "estimated_resolution_time": "15 minutes",
+              "steps": [
+                {
+                  "step_id": "step001",
+                  "sequence": 1,
+                  "instruction": "Restart authentication server."
+                },
+                {
+                  "step_id": "step002",
+                  "sequence": 2,
+                  "instruction": "Check network connection and stable communication."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "issue_id": "issue002",
+          "title": "Crash on Startup",
+          "description": "Application crashes immediately upon launching.",
+          "severity": "Critical",
+          "symptoms": [
+            {
+              "symptom_id": "sym003",
+              "description": "Application closes unexpectedly without error message."
+            }
+          ],
+          "causes": [
+            {
+              "cause_id": "cause003",
+              "description": "Config file error"
+            }
+          ],
+          "solutions": [
+            {
+              "solution_id": "sol002",
+              "description": "Reinstall app and restore backup configuration ",
+              "estimated_resolution_time": "30 mins",
+              "steps": [
+                {
+                  "step_id": "step003",
+                  "sequence": 1,
+                  "instruction": "Uninstall current app version "
+                },
+                {
+                  "step_id": "step004",
+                  "sequence": 2,
+                  "instruction": "Reinstall application using the latest installer."
+                },
+                {
+                  "step_id": "step005",
+                  "sequence": 3,
+                  "instruction": "Restore configuration setting from backup."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+  
