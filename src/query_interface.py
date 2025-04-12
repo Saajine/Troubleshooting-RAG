@@ -1,7 +1,7 @@
 # src/query_interface.py
 
 import argparse
-from vector_db import KnowledgeGraphVectorDB
+from src.vector_db import KnowledgeGraphVectorDB
 
 def main():
     """Command-line interface for querying the vector database."""

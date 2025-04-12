@@ -1,13 +1,20 @@
-# src/main.py
+# src/main.py - Correct imports
 
 import argparse
 from pathlib import Path
 import os
 import sys
 import logging
-from vector_db import KnowledgeGraphVectorDB
-from query_processor import QueryProcessor
-from ollama_interface import OllamaInterface
+
+# Add the parent directory to sys.path to fix imports
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent
+sys.path.append(str(project_root))
+
+# Now import from src directly
+from src.vector_db import KnowledgeGraphVectorDB
+from src.query_processor import QueryProcessor
+from src.ollama_interface import OllamaInterface
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -15,13 +22,18 @@ logger = logging.getLogger(__name__)
 
 def process_knowledge_graph():
     """Process the knowledge graph."""
-    from process_knowledge_graph import main as process_main
+    from src.process_knowledge_graph import main as process_main
     process_main()
 
 def build_vector_db():
     """Build the vector database."""
-    from vector_db import main as vector_db_main
+    from src.vector_db import main as vector_db_main
     vector_db_main()
+
+def start_web_interface(host='0.0.0.0', port=5000, debug=True):
+    """Start the web interface."""
+    from src.web_server import main as web_main
+    web_main(host=host, port=port, debug=debug)
 
 def interactive_mode(model_name="llama3", results=3):
     """Start interactive mode."""
@@ -87,6 +99,12 @@ def main():
     interactive_parser.add_argument('--results', type=int, default=3, help='Number of results to return')
     interactive_parser.add_argument('--model', default='llama3', help='Ollama model name to use')
     
+    # Web interface command
+    web_parser = subparsers.add_parser('web', help='Start web interface')
+    web_parser.add_argument('--host', default='0.0.0.0', help='Host address')
+    web_parser.add_argument('--port', type=int, default=5000, help='Port number')
+    web_parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+    
     # Run all command
     subparsers.add_parser('all', help='Run process, build, and start interactive mode')
     
@@ -100,6 +118,8 @@ def main():
         build_vector_db()
     elif args.command == 'interactive':
         interactive_mode(model_name=args.model, results=args.results)
+    elif args.command == 'web':
+        start_web_interface(host=args.host, port=args.port, debug=args.debug)
     elif args.command == 'all':
         print("=== Processing Knowledge Graph ===")
         process_knowledge_graph()

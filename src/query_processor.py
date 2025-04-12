@@ -1,12 +1,18 @@
-# src/query_processor.py
-
+# At the top of query_processor.py
 import json
 import os
 import re
 from pathlib import Path
 import logging
-from vector_db import KnowledgeGraphVectorDB
-from ollama_interface import OllamaInterface
+import sys
+
+# Add the parent directory to sys.path to fix imports
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent
+sys.path.append(str(project_root))
+
+from src.vector_db import KnowledgeGraphVectorDB
+from src.ollama_interface import OllamaInterface
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

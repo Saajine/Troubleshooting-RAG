@@ -8,7 +8,7 @@ from pathlib import Path
 # Add src directory to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.llm_interface import LLMInterface
+from src.ollama_interface.py import LLMInterface
 
 class TestLLMInterface(unittest.TestCase):
     

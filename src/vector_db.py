@@ -81,7 +81,6 @@ class KnowledgeGraphVectorDB:
 
 def main():
     """Main function to build the vector database."""
-    # Define paths
     processed_data_path = Path('data/processed/documents.json')
     
     # Initialize vector database
@@ -93,7 +92,7 @@ def main():
     # Add documents to vector database
     vector_db.add_documents(documents)
     
-    # Print collection count
+    # print collection count
     print(f"Total documents in collection: {vector_db.get_collection_count()}")
 
 
