@@ -38,22 +38,6 @@ def setup_argparse():
     
     return parser
 
-def process_single_query(args):
-    """Process a single query."""
-    # Initialize components
-    llm_interface = LLMInterface(model_type=args.model, model_path=args.model_path)
-    vector_db = KnowledgeGraphVectorDB()
-    processor = QueryProcessor(vector_db=vector_db, llm_interface=llm_interface)
-    
-    # Process query
-    result = processor.process_query(args.question, n_results=args.results)
-    
-    # Print answer
-    print("\n" + "="*50)
-    print(f"Question: {result['query']}")
-    print("-"*50)
-    print(f"Answer: {result['answer']}")
-    print("="*50)
 
 def interactive_mode(args):
     """Start interactive mode."""
@@ -95,9 +79,7 @@ def main():
     parser = setup_argparse()
     args = parser.parse_args()
     
-    if args.command == 'query':
-        process_single_query(args)
-    elif args.command == 'interactive':
+    if args.command == 'interactive':
         interactive_mode(args)
     else:
         parser.print_help()

@@ -76,7 +76,7 @@ class OllamaInterface:
         
         Your task is to identify the key entities, relationships, and constraints from the user's question.
         
-        The knowledge graph contains information about software products, issues, symptoms, causes, and solutions.
+        The knowledge graph contains information about software products, issues, symptoms, causes, and solutions, faqs, severity, test/log, steps, user feedback.
         
         User Question: {question}
         

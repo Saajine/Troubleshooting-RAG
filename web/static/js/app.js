@@ -52,7 +52,7 @@ const KnowledgeGraphApp = () => {
     return (
       <div className="app-container">
         <header className="header">
-          <h1>Knowledge Graph Query System</h1>
+          <h1>Dassault Software Troubleshooting System</h1>
           <p>Ask questions about software issues, symptoms, causes, and solutions</p>
         </header>
         
@@ -97,7 +97,7 @@ const KnowledgeGraphApp = () => {
         </main>
         
         <footer className="footer">
-          <p>Powered by Knowledge Graph Vector Database with Ollama</p>
+          <p>Powered by Vector Database with Ollama</p>
         </footer>
       </div>
     );
