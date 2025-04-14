@@ -5,6 +5,7 @@ import os
 import chromadb
 from pathlib import Path
 from chromadb.utils import embedding_functions
+import time
 
 class KnowledgeGraphVectorDB:
     def __init__(self, collection_name="knowledge_graph", persist_directory="chroma_db"):
@@ -69,10 +70,17 @@ class KnowledgeGraphVectorDB:
     
     def query(self, query_text, n_results=3):
         """Query the vector database."""
+        # Start timing
+        start_time = time.time()
         results = self.collection.query(
             query_texts=[query_text],
             n_results=n_results
         )
+        # Calculate query time
+        chroma_query_time = time.time() - start_time
+        
+        # Add timing to results
+        results['query_time'] = chroma_query_time
         return results
     
     def get_collection_count(self):

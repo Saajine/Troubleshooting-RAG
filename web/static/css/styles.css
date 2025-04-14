@@ -158,3 +158,11 @@
     font-size: 0.875rem;
     margin-top: 1.5rem;
   }
+
+  .timing-info {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    font-style: italic;
+    text-align: right;
+  }

@@ -92,12 +92,20 @@ const KnowledgeGraphApp = () => {
               <div className="answer-container">
                 {result.answer}
               </div>
+              <div className="timing-info">
+                {result.total_processing_time && (
+                  <div>Total processing time: {result.total_processing_time.toFixed(2)} seconds</div>
+                )}
+                {result.chroma_query_time && (
+                  <div>ChromaDB query time: {result.chroma_query_time.toFixed(2)} seconds</div>
+                )}
+              </div>
             </div>
           )}
         </main>
         
         <footer className="footer">
-          <p>Powered by Vector Database with Ollama</p>
+          <p>Powered by ChromaDB with Llama3</p>
         </footer>
       </div>
     );

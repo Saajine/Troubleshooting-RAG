@@ -3,12 +3,12 @@ import pandas as pd
 from pathlib import Path
 
 def load_knowledge_graph(file_path):
-    """Load the knowledge graph from a JSON file."""
+    """Load the knowledge data from a JSON file."""
     with open(file_path, 'r') as f:
         return json.load(f)
 
 def extract_entities_and_relationships(knowledge_graph):
-    """Extract entities and relationships from the knowledge graph."""
+    """Extract entities and relationships from the knowledge data."""
     
     # Initialize lists to store entities
     products = []

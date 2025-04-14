@@ -73,6 +73,8 @@ def interactive_mode(model_name="llama3", results=3):
                 print(f"Error: {result['error']}")
             else:
                 print(f"Answer: {result['answer']}")
+                if 'total_processing_time' in result:
+                    print(f"Total processing time: {result['total_processing_time']:.2f} seconds")
             print("-"*50)
     
     except Exception as e:

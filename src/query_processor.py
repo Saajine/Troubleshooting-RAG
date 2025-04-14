@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 import logging
 import sys
+import time
 
 # Add the parent directory to sys.path to fix imports
 current_dir = Path(__file__).resolve().parent
@@ -56,6 +57,7 @@ class QueryProcessor:
     
     def process_query(self, user_question, n_results=3):
         """Process a user query and generate an answer."""
+        start_time = time.time()
         logger.info(f"Processing query: {user_question}")
         
         try:
@@ -71,6 +73,9 @@ class QueryProcessor:
             # Step 3: Search the vector database
             logger.info(f"Searching vector database with keywords: {parsed_analysis['keywords']}")
             search_results = self.vector_db.query(parsed_analysis['keywords'], n_results=n_results)
+
+            # Get ChromaDB query time
+            chroma_time = search_results.get('query_time', 0)
             
             # Step 4: Prepare context for answer generation
             context = self._prepare_context(search_results)
@@ -78,12 +83,15 @@ class QueryProcessor:
             # Step 5: Generate answer
             logger.info("Generating answer")
             answer = self.answer_chain.run(context=context, question=user_question)
+            total_time = time.time() - start_time
             
             return {
                 'query': user_question,
                 'analysis': query_analysis,
                 'results': search_results,
-                'answer': answer
+                'answer': answer,
+                'total_processing_time': total_time,  # Total time from question to answer
+                'chroma_query_time': chroma_time
             }
             
         except Exception as e:
