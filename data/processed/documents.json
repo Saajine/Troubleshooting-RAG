@@ -1,0 +1,65 @@
+[
+  {
+    "id": "issue001",
+    "text": "Issue: Login Failure\nDescription: Users are unable to log in due to credential verification errors.\nSeverity: High\nFrequency: Often\n\nSymptoms:\n- Error message: 'Invalid credentials'\n- Timeout on the login screen\n\nCauses:\n- Server authentication error\n- Network connectivity issues\n\nSolutions:\n- Restart the authentication server and verify network connectivity. (Est. time: 15 minutes)\n  Steps:\n  1. Restart the authentication server.\n  2. Check the network connection and verify stability.\n\nDiagnostic Tests:\n- Server Connectivity Test: Checks if the server is reachable.\n  Procedure: Ping the server and verify response time.\n\nLog Entries:\n- [2023-10-07T15:30:00Z] ERROR: Authentication server did not respond in time.\n\nFrequently Asked Questions:\n- Q: What can cause login failures?\n  A: Login failures may be due to server issues or network problems. Please check connectivity.\n\nUser Feedback:\n- Rating: 3/5, Date: 2023-10-07\n  Comment: The solution worked, but it took too long.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue001",
+      "title": "Login Failure",
+      "severity": "High",
+      "frequency": "Often"
+    }
+  },
+  {
+    "id": "issue002",
+    "text": "Issue: Crash on Startup\nDescription: The application crashes immediately after launch.\nSeverity: Critical\nFrequency: Intermittent\n\nSymptoms:\n- Application closes unexpectedly without error message.\n\nCauses:\n- Corrupted installation or missing dependencies\n\nSolutions:\n- Reinstall the application to restore missing or corrupted files. (Est. time: 30 minutes)\n  Steps:\n  1. Uninstall the current version of the application.\n  2. Download the latest installer from the official website.\n  3. Install the application and restart your computer.\n\nDiagnostic Tests:\n- Installation Integrity Test: Verifies the integrity of installed files.\n  Procedure: Run the built-in installer repair tool.\n\nLog Entries:\n- [2023-10-08T09:15:00Z] ERROR: Unexpected termination detected during startup.\n\nFrequently Asked Questions:\n- Q: What should I do if the app crashes on startup?\n  A: Try reinstalling the application to ensure all files are intact.\n\nUser Feedback:\n- Rating: 2/5, Date: 2023-10-08\n  Comment: Frequent crashes make the app unusable until reinstalled.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue002",
+      "title": "Crash on Startup",
+      "severity": "Critical",
+      "frequency": "Intermittent"
+    }
+  },
+  {
+    "id": "issue003",
+    "text": "Issue: Slow Performance\nDescription: The application responds slowly and exhibits lag during usage.\nSeverity: Medium\nFrequency: Common\n\nSymptoms:\n- Delayed response to user inputs.\n- Laggy animations or transitions.\n\nCauses:\n- High CPU usage due to memory leaks.\n\nSolutions:\n- Restart the application and clear cache to resolve performance issues. (Est. time: 10 minutes)\n  Steps:\n  1. Close the application and reopen it.\n  2. Clear the application cache from Settings.\n\nDiagnostic Tests:\n- Performance Benchmark Test: Measures CPU and memory usage during application runtime.\n  Procedure: Use the built-in performance monitor for 5 minutes.\n\nLog Entries:\n- [2023-10-09T12:00:00Z] WARNING: High memory usage detected.\n\nFrequently Asked Questions:\n- Q: Why is the app running slowly?\n  A: High resource usage and memory leaks can cause performance degradation. Try clearing the cache or restarting.\n\nUser Feedback:\n- Rating: 3/5, Date: 2023-10-09\n  Comment: The app lags when multiple features are in use.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue003",
+      "title": "Slow Performance",
+      "severity": "Medium",
+      "frequency": "Common"
+    }
+  },
+  {
+    "id": "issue004",
+    "text": "Issue: Data Sync Error\nDescription: Data synchronization between the device and the cloud fails intermittently.\nSeverity: High\nFrequency: Often\n\nSymptoms:\n- Sync failure notifications appear.\n- Data remains outdated on the device.\n\nCauses:\n- Expired authentication token or connectivity issues.\n\nSolutions:\n- Reauthenticate and check internet connection to restore data synchronization. (Est. time: 20 minutes)\n  Steps:\n  1. Log out and log back in to refresh authentication.\n  2. Verify internet connectivity and trigger a manual sync.\n\nDiagnostic Tests:\n- Network Connectivity Test: Ensures stable network connection for data sync.\n  Procedure: Run a ping test to the server.\n\nLog Entries:\n- [2023-10-10T14:45:00Z] ERROR: Data synchronization failed due to token expiry.\n\nFrequently Asked Questions:\n- Q: How do I fix data sync errors?\n  A: Ensure your internet connection is stable and reauthenticate your account.\n\nUser Feedback:\n- Rating: 4/5, Date: 2023-10-10\n  Comment: Sync issues are annoying but resolved after re-login.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue004",
+      "title": "Data Sync Error",
+      "severity": "High",
+      "frequency": "Often"
+    }
+  },
+  {
+    "id": "issue005",
+    "text": "Issue: Unexpected Shutdown\nDescription: The application shuts down unexpectedly during operation without any warning.\nSeverity: High\nFrequency: Occasional\n\nSymptoms:\n- The application closes suddenly and restarts.\n\nCauses:\n- Hardware overheating or critical software bug.\n\nSolutions:\n- Monitor hardware temperature and update the application to the latest version. (Est. time: 25 minutes)\n  Steps:\n  1. Check your device's temperature using a monitoring tool.\n  2. Install any available updates for the application.\n\nDiagnostic Tests:\n- Temperature Diagnostic Test: Measures the hardware temperature during usage.\n  Procedure: Use a temperature monitoring utility for a 10-minute test.\n\nLog Entries:\n- [2023-10-11T08:20:00Z] WARNING: Unexpected shutdown detected during heavy load.\n\nFrequently Asked Questions:\n- Q: What should I do if the app shuts down unexpectedly?\n  A: Monitor your device temperature and ensure you are using the latest software version.\n\nUser Feedback:\n- Rating: 2/5, Date: 2023-10-11\n  Comment: The unexpected shutdowns are very disruptive.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "issue_id": "issue005",
+      "title": "Unexpected Shutdown",
+      "severity": "High",
+      "frequency": "Occasional"
+    }
+  },
+  {
+    "id": "product_faqs_prod001",
+    "text": "Product: AwesomeApp (Version: 1.2.3)\nDescription: A feature-rich application designed for seamless productivity.\n\nGeneral Frequently Asked Questions:\n- Q: How do I update the software?\n  A: To update the software, go to Settings > About and click 'Check for Updates'.\n",
+    "metadata": {
+      "product_id": "prod001",
+      "type": "product_faqs"
+    }
+  }
+]
