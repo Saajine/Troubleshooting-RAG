@@ -107,7 +107,7 @@ class QueryProcessor:
             search_results['metadatas'][0], 
             search_results['distances'][0]
         )):
-            relevance = 1 - distance
+            relevance = max(0, 1 - distance) 
             context += f"--- Result {i+1} (Relevance: {relevance:.2f}) ---\n"
             
             # Safely access metadata fields

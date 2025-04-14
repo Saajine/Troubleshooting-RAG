@@ -31,7 +31,7 @@ def main():
         results['metadatas'][0], 
         results['distances'][0]
     )):
-        relevance = 1 - distance  # Convert distance to relevance score
+        relevance = max(0, min(1, 1 - distance))  
         print(f"=== Result {i+1} (Relevance: {relevance:.2f}) ===")
         print(f"Title: {metadata['title']}")
         print(f"Severity: {metadata['severity']}")
