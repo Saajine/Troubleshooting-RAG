@@ -113,3 +113,6 @@ const KnowledgeGraphApp = () => {
   
   // Render the application
   ReactDOM.render(<KnowledgeGraphApp />, document.getElementById('app'));
+
+
+  //-python -m src.main web --port 8080
