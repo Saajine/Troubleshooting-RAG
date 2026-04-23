@@ -1,0 +1,12 @@
+myenv/
+chroma_db/
+chroma_db_backup/
+__pycache__/
+*.pyc
+*.pyo
+.claude/
+*.egg-info/
+.DS_Store
+defense/model/checkpoint-*/
+defense/model/*.safetensors
+defense/model/*.bin

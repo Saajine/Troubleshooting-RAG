@@ -108,7 +108,14 @@ class QueryProcessor:
         # Check if there are any results
         if not search_results or not search_results.get('documents') or len(search_results['documents'][0]) == 0:
             return "No relevant information found in the knowledge base."
-        
+
+        import os
+        if os.environ.get("DEFENSE_ACTIVE") == "1":
+            from defense.sanitizer import filter_retrieved
+            search_results, flagged = filter_retrieved(search_results)
+            if flagged:
+                print(f"[Defense] Flagged and removed: {flagged}")
+
         # Add each result to the context
         for i, (doc, metadata, distance) in enumerate(zip(
             search_results['documents'][0], 
