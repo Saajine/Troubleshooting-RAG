@@ -1,5 +1,4 @@
-#!/Users/saajinesathappan/Desktop/nlp/myenv/bin/python
-# -*- coding: utf-8 -*-
+#!/Users/saajinesathappan/Troubleshooting-RAG/myenv/bin/python3.12
 
 
 import argparse

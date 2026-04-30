@@ -3,7 +3,6 @@
 import re
 import unicodedata
 from functools import lru_cache
-from typing import Union
 from urllib.parse import scheme_chars, uses_netloc
 
 from ._quoters import QUOTER, UNQUOTER_PLUS
@@ -69,11 +68,11 @@ def split_url(url: str) -> SplitURLType:
             # Valid bracketed hosts are defined in
             # https://www.rfc-editor.org/rfc/rfc3986#page-49
             # https://url.spec.whatwg.org/
-            if bracketed_host[0] == "v":
+            if bracketed_host and bracketed_host[0] == "v":
                 if not re.match(r"\Av[a-fA-F0-9]+\..+\Z", bracketed_host):
                     raise ValueError("IPvFuture address is invalid")
             elif ":" not in bracketed_host:
-                raise ValueError("An IPv4 address cannot be in brackets")
+                raise ValueError("The IPv6 content between brackets is not valid")
     if has_hash:
         url, _, fragment = url.partition("#")
     if has_question_mark:
@@ -108,11 +107,11 @@ def _check_netloc(netloc: str) -> None:
 @lru_cache  # match the same size as urlsplit
 def split_netloc(
     netloc: str,
-) -> tuple[Union[str, None], Union[str, None], Union[str, None], Union[int, None]]:
+) -> tuple[str | None, str | None, str | None, int | None]:
     """Split netloc into username, password, host and port."""
     if "@" not in netloc:
-        username: Union[str, None] = None
-        password: Union[str, None] = None
+        username: str | None = None
+        password: str | None = None
         hostinfo = netloc
     else:
         userinfo, _, hostinfo = netloc.rpartition("@")
@@ -157,10 +156,10 @@ def unsplit_result(
 
 @lru_cache  # match the same size as urlsplit
 def make_netloc(
-    user: Union[str, None],
-    password: Union[str, None],
-    host: Union[str, None],
-    port: Union[int, None],
+    user: str | None,
+    password: str | None,
+    host: str | None,
+    port: int | None,
     encode: bool = False,
 ) -> str:
     """Make netloc from parts.

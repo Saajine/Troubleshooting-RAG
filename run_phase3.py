@@ -100,6 +100,50 @@ def _teardown_collection():
         pass
 
 
+def run_experiment_from_docs(name: str, docs: list, defense: bool, output_path: Path,
+                              payload_marker: str = PHASE3_MARKER) -> list:
+    """Run an experiment using a fully custom document list (e.g. Pragyan's adaptive KB).
+
+    Unlike run_experiment(), this does NOT load or strip the base corpus — the
+    caller supplies the complete document list as-is.
+    """
+    import chromadb
+    print(f"\n{'='*60}")
+    print(f"EXPERIMENT: {name}")
+    print(f"  defense={'ON' if defense else 'OFF'}  total docs={len(docs)}")
+    print(f"{'='*60}")
+
+    client = chromadb.PersistentClient(path=CHROMA_DIR)
+    try:
+        client.delete_collection(COLLECTION_NAME)
+        print(f"[setup] Deleted stale '{COLLECTION_NAME}' collection")
+    except Exception:
+        pass
+
+    db = KnowledgeGraphVectorDB(collection_name=COLLECTION_NAME, persist_directory=CHROMA_DIR)
+    db.add_documents(docs)
+    print(f"[setup] Collection '{COLLECTION_NAME}': {db.get_collection_count()} docs")
+
+    processor = QueryProcessor(vector_db=db)
+
+    if defense:
+        os.environ["DEFENSE_ACTIVE"] = "1"
+    else:
+        os.environ.pop("DEFENSE_ACTIVE", None)
+
+    records = run_eval(
+        PHASE3_QUERIES,
+        name,
+        output_path,
+        processor=processor,
+        payload_marker=payload_marker,
+    )
+
+    os.environ.pop("DEFENSE_ACTIVE", None)
+    _teardown_collection()
+    return records
+
+
 def run_experiment(name: str, attack_docs: list, defense: bool, output_path: Path) -> list:
     """Run one experiment: build collection, run eval, teardown."""
     print(f"\n{'='*60}")

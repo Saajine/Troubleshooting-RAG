@@ -1,5 +1,4 @@
 """Run evaluator wrapper for string evaluators."""
-
 from __future__ import annotations
 
 from abc import abstractmethod
@@ -239,7 +238,7 @@ class StringExampleMapper(Serializable):
         return self.map(example)
 
 
-class StringRunEvaluatorChain(Chain, RunEvaluator):  # type: ignore[override, override]
+class StringRunEvaluatorChain(Chain, RunEvaluator):
     """Evaluate Run and optional examples."""
 
     run_mapper: StringRunMapper
